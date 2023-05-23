@@ -19,12 +19,16 @@ export default {
     }
   },
   mounted() {
-    console.log("questo è store:", this.store)
+    // Return store in Console
+    console.log("This is store:", this.store)
+
     // Return "Yu Gi Oh API" call response
     axios.get(this.store.urlAPI).then(response => {
-      console.log("The API call was successful 🥳")
-      console.log("Response receiver: ", response.data);
-
+      console.log("The API call was successful 🥳");
+      this.store.cardData.push(response.data.data);
+      setTimeout(() => {
+        console.log("API Results: ", this.store.cardData);
+      }, 200);
     }).catch(error => { console.error("Something went wrong with the API call 🫤") })
   }
 }
@@ -32,7 +36,6 @@ export default {
 
 <template>
   <header class="bg-white">
-    A
     <AppHeader />
   </header>
   <main>
