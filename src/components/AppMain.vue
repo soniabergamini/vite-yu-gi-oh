@@ -18,8 +18,8 @@ export default {
 </script>
 
 <template>
-    <!-- Card Section -->
-    <section v-if="store.cardData.length > 0" class="p-12">
+    <!-- Cards Section -->
+    <section v-if="store.cardData.length > 0 && !store.errorMsg" class="p-12">
 
         <!-- Title -->
         <div class="text-white bg-secondaryBlack p-3">
@@ -28,8 +28,8 @@ export default {
         </div>
 
         <!-- All cards -->
-        <section class="flex justify-between flex-wrap gap-[0.5em]">
-            <div v-for="item in store.cardData[0]" class="w-[calc(100%/5-1em)] bg-primaryYellow">
+        <section class="flex-wrap gap-[0.5em]">
+            <div v-for="item in store.cardData[0]" class="w-[calc(100%/5-1em)] bg-primaryYellow mb-1">
                 <img :src="getImgPath(item.card_images[0].image_url_small)"
                     src="https://images.ygoprodeck.com/images/cards_small/34541863.jpg" alt="card-img" class="w-full">
                 <div class="text-center p-3">
@@ -38,10 +38,16 @@ export default {
                 </div>
             </div>
         </section>
+
     </section>
 </template>
 
 <style lang="scss" scoped>
 @use '../style/variables.scss' as *;
 @use '../style/mixin.scss' as *;
+
+
+section>section {
+    @include flex(space-between, stretch)
+}
 </style>

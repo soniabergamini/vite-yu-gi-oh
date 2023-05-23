@@ -1,6 +1,8 @@
 <script>
 import AppHeader from './components/AppHeader.vue'
+import AppSpinner from './components/AppSpinner.vue'
 import AppMain from './components/AppMain.vue'
+import AppErrorLoad from './components/AppErrorLoad.vue'
 import AppFooter from './components/AppFooter.vue'
 
 import { store } from './data/store';
@@ -11,6 +13,8 @@ export default {
   components: {
     AppHeader,
     AppMain,
+    AppErrorLoad,
+    AppSpinner,
     AppFooter
   },
   data() {
@@ -19,17 +23,18 @@ export default {
     }
   },
   mounted() {
-    // Return store in Console
-    console.log("This is store:", this.store)
-
     // Return "Yu Gi Oh API" call response
     axios.get(this.store.urlAPI).then(response => {
       console.log("The API call was successful 🥳");
       this.store.cardData.push(response.data.data);
+      this.store.loadingData = !this.store.loadingData
+    }).catch(error => {
+      console.error("Something went wrong with the API call 🫤");
       setTimeout(() => {
-        console.log("API Results: ", this.store.cardData);
-      }, 200);
-    }).catch(error => { console.error("Something went wrong with the API call 🫤") })
+        this.store.loadingData = !this.store.loadingData
+        this.store.errorMsg = true
+      }, 1 * 5000);
+    })
   }
 }
 </script>
@@ -39,7 +44,9 @@ export default {
     <AppHeader />
   </header>
   <main class="mx-auto my-5 bg-white max-w-screen-xl">
+    <AppSpinner />
     <AppMain />
+    <AppErrorLoad />
   </main>
   <footer class="mx-auto mt-5 pb-2 max-w-screen-xl text-center">
     <AppFooter />
