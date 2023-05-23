@@ -12,18 +12,35 @@ export default {
     AppHeader,
     AppMain,
     AppFooter
+  },
+  data() {
+    return {
+      store
+    }
+  },
+  mounted() {
+    console.log("questo è store:", this.store)
+    // Return "Yu Gi Oh API" call response
+    axios.get(this.store.urlAPI).then(response => {
+      console.log("The API call was successful 🥳")
+      console.log("Response receiver: ", response.data);
+
+    }).catch(error => { console.error("Something went wrong with the API call 🫤") })
   }
 }
 </script>
 
 <template>
-  <header>
+  <header class="bg-white">
+    A
     <AppHeader />
   </header>
   <main>
+    B
     <AppMain />
   </main>
   <footer>
+    C
     <AppFooter />
   </footer>
 </template>

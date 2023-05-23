@@ -1,4 +1,6 @@
 <script>
+import axios, { Axios } from 'axios';
+
 
 export default {
     name: "AppHeader"
