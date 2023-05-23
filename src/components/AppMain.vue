@@ -23,7 +23,7 @@ export default {
 
         <!-- Title -->
         <div class="text-white bg-secondaryBlack p-3">
-            <pre>{{ store.cardData[0] }}</pre>
+            <!-- <pre>{{ store.cardData[0] }}</pre> -->
             <h2 class="font-bold text-lg md:text-xl">Found {{ store.cardData[0].length }} cards</h2>
         </div>
 

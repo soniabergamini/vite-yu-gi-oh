@@ -22,19 +22,24 @@ export default {
       store
     }
   },
-  mounted() {
-    // Return "Yu Gi Oh API" call response
-    axios.get(this.store.urlAPI).then(response => {
-      console.log("The API call was successful 🥳");
-      this.store.cardData.push(response.data.data);
-      this.store.loadingData = !this.store.loadingData
-    }).catch(error => {
-      console.error("Something went wrong with the API call 🫤");
-      setTimeout(() => {
+  methods: {
+    // Return cards data from "Yu Gi Oh API" call
+    getCards() {
+      axios.get(this.store.urlAPI).then(response => {
+        // console.log("The API call was successful 🥳");
+        this.store.cardData.push(response.data.data);
         this.store.loadingData = !this.store.loadingData
-        this.store.errorMsg = true
-      }, 1 * 5000);
-    })
+      }).catch(error => {
+        console.error("🫤 Something went wrong with the API call: ", error);
+        setTimeout(() => {
+          this.store.loadingData = !this.store.loadingData
+          this.store.errorMsg = true
+        }, 1 * 5000);
+      })
+    }
+  },
+  mounted() {
+    this.getCards()
   }
 }
 </script>
@@ -43,11 +48,13 @@ export default {
   <header class="bg-white">
     <AppHeader />
   </header>
+
   <main class="mx-auto my-5 bg-white max-w-screen-xl">
     <AppSpinner />
     <AppMain />
     <AppErrorLoad />
   </main>
+
   <footer class="mx-auto mt-5 pb-2 max-w-screen-xl text-center">
     <AppFooter />
   </footer>
