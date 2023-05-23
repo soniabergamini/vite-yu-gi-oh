@@ -6,8 +6,11 @@ export default {
 
 </script>
 
-<template></template>
+<template>
+    <small class="text-white">Made with 💚 by Boolean</small>
+</template>
 
 <style lang="scss" scoped>
-@use '../variables.scss' as *;
+@use '../style/variables.scss' as *;
+@use '../style/mixin.scss' as *;
 </style>

@@ -38,12 +38,10 @@ export default {
   <header class="bg-white">
     <AppHeader />
   </header>
-  <main>
-    B
+  <main class="mx-auto my-5 bg-white max-w-screen-xl">
     <AppMain />
   </main>
-  <footer>
-    C
+  <footer class="mx-auto mt-5 pb-2 max-w-screen-xl text-center">
     <AppFooter />
   </footer>
 </template>

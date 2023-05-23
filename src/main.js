@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
-import './variables.scss'
+import './style/variables.scss'
+import './style/mixin.scss'
 import App from './App.vue'
 
 createApp(App).mount('#app')
