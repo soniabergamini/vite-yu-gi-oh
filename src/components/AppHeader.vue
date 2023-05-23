@@ -8,7 +8,7 @@ export default {
 <template>
     <section class="p-4">
         <img src="../assets/logo.png" alt="logo-img" class="w-1/12 mr-4">
-        <h1 class="text-4xl">Yu-Gi-Oh Api</h1>
+        <h1 class="text-2xl md:text-4xl">Yu-Gi-Oh Api</h1>
     </section>
 </template>
 
