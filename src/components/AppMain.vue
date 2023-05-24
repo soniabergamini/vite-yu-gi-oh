@@ -28,7 +28,7 @@ export default {
         </div>
 
         <!-- All cards -->
-        <section class="flex-wrap gap-[0.5em]">
+        <section id="allCardSec" class="flex-wrap gap-[0.5em]">
             <div v-for="item in store.cardData[0]"
                 class="w-[calc(100%/2-1em)] md:w-[calc(100%/4-1em)] lg:w-[calc(100%/5-1em)] bg-primaryYellow mb-1">
                 <img :src="getImgPath(item.card_images[0].image_url_small)" alt="card-img" class="w-full">
@@ -48,7 +48,7 @@ export default {
 @use '../style/mixin.scss' as *;
 
 
-section>section {
+#allCardSec {
     @include flex(space-between, stretch)
 }
 </style>

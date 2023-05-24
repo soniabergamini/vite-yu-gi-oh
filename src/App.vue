@@ -1,5 +1,6 @@
 <script>
 import AppHeader from './components/AppHeader.vue'
+import AppSelect from './components/AppSelect.vue'
 import AppSpinner from './components/AppSpinner.vue'
 import AppMain from './components/AppMain.vue'
 import AppErrorLoad from './components/AppErrorLoad.vue'
@@ -12,6 +13,7 @@ export default {
   name: "App",
   components: {
     AppHeader,
+    AppSelect,
     AppMain,
     AppErrorLoad,
     AppSpinner,
@@ -48,11 +50,13 @@ export default {
   <header class="bg-white">
     <AppHeader />
   </header>
-
-  <main class="mx-auto my-5 bg-white max-w-screen-xl">
-    <AppSpinner />
-    <AppMain />
-    <AppErrorLoad />
+  <main class="mx-auto max-w-screen-xl">
+    <AppSelect />
+    <section class="mx-auto my-1 bg-white max-w-screen-xl">
+      <AppSpinner />
+      <AppMain />
+      <AppErrorLoad />
+    </section>
   </main>
 
   <footer class="mx-auto mt-5 pb-2 max-w-screen-xl text-center">
