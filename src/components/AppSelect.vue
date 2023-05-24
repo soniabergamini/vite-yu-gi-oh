@@ -6,12 +6,7 @@ export default {
     data() {
         return {
             store,
-            chosenCard: "All",
-            testOptions: [
-                "A",
-                "B",
-                "C"
-            ]
+            chosenCard: "All"
         }
     },
     methods: {
@@ -26,11 +21,11 @@ export default {
 <template>
     <!-- Select -->
     <section class="p-5">
+        <!-- <pre>{{ store.archetypesData[0] }}</pre> -->
         <select class="py-1.5 px-1 w-1/6 border rounded" v-model="chosenCard" @change="updateCards()">
             <option selected>All</option>
-            <option v-for="item in testOptions">{{ item }}</option>
+            <option v-for="item in store.archetypesData[0]">{{ item.archetype_name }}</option>
         </select>
-
     </section>
 </template>
 

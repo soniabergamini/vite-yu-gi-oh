@@ -38,10 +38,19 @@ export default {
           this.store.errorMsg = true
         }, 1 * 5000);
       })
+    },
+    // Return archetypes list from "Yu Gi Oh API" call
+    getArchetypesList() {
+      axios.get(this.store.urlArchetypesList).then(response => {
+        console.log("The API call for Archetypes List was successful 🥳");
+        this.store.archetypesData.push(response.data);
+        console.log("Archetypes data: ", this.store.archetypesData)
+      })
     }
   },
   mounted() {
-    this.getCards()
+    this.getCards(),
+      this.getArchetypesList()
   }
 }
 </script>
