@@ -6,11 +6,17 @@ export default {
     data() {
         return {
             store,
+            chosenCard: "All",
             testOptions: [
                 "A",
                 "B",
                 "C"
             ]
+        }
+    },
+    methods: {
+        updateCards() {
+            console.log("Chosen card: ", this.chosenCard)
         }
     }
 }
@@ -20,7 +26,8 @@ export default {
 <template>
     <!-- Select -->
     <section class="p-5">
-        <select class="py-1.5 px-1 w-1/6 border rounded">
+        <select class="py-1.5 px-1 w-1/6 border rounded" v-model="chosenCard" @change="updateCards()">
+            <option selected>All</option>
             <option v-for="item in testOptions">{{ item }}</option>
         </select>
 
