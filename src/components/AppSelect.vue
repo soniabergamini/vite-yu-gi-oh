@@ -7,17 +7,27 @@ export default {
     data() {
         return {
             store,
-            chosenCard: "All"
+            chosenCard: "All",
+            urlUpdateAPI: ''
         }
     },
     computed: {
-        // Return cards from archetypes filter
+        // Return only cards of the selected archetype
         updateCards() {
-            console.log("Chosen card: ", this.chosenCard.trim());
-            let urlAPI = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=' + this.chosenCard;
-            axios.get(urlAPI).then(response => {
+            this.store.loadingData = true;
+            this.store.errorMsg = false;
+            this.urlUpdateAPI = this.chosenCard == "All" ? this.store.urlAPI : this.store.urlArchetypesFilter + this.chosenCard
+            // API call to update cards
+            axios.get(this.urlUpdateAPI).then(response => {
                 this.store.cardData = [];
                 this.store.cardData.push(response.data.data);
+                this.store.loadingData = false
+            }).catch(error => {
+                console.error("🫤 Something went wrong with the API call: ", error);
+                setTimeout(() => {
+                    this.store.loadingData = false
+                    this.store.errorMsg = true
+                }, 1 * 5000);
             })
         }
     }
@@ -26,7 +36,7 @@ export default {
 </script>
 
 <template>
-    <!-- Select -->
+    <!-- Select Menu with card archetypes options -->
     <section class="p-5">
         <!-- <pre>{{ store.archetypesData[0] }}</pre> -->
         <select class="py-1.5 px-1 w-1/6 border rounded" v-model="chosenCard" @change="updateCards">

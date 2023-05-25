@@ -26,30 +26,30 @@ export default {
   },
   methods: {
     // Return cards data from "Yu Gi Oh API" call
-    getCards() {
+    getAllCards() {
       axios.get(this.store.urlAPI).then(response => {
         // console.log("The API call was successful 🥳");
         this.store.cardData.push(response.data.data);
-        this.store.loadingData = !this.store.loadingData
+        this.store.loadingData = false
       }).catch(error => {
         console.error("🫤 Something went wrong with the API call: ", error);
         setTimeout(() => {
-          this.store.loadingData = !this.store.loadingData
+          this.store.loadingData = false
           this.store.errorMsg = true
         }, 1 * 5000);
       })
     },
-    // Return archetypes list from "Yu Gi Oh API" call
+    // Return archetypes list from "Yu Gi Oh Archetypes API" call
     getArchetypesList() {
       axios.get(this.store.urlArchetypesList).then(response => {
-        console.log("The API call for Archetypes List was successful 🥳");
+        // console.log("The API call for Archetypes List was successful 🥳");
         this.store.archetypesData.push(response.data);
-        console.log("Archetypes data: ", this.store.archetypesData)
+        this.store.loadingData = false
       })
     }
   },
   mounted() {
-    this.getCards(),
+    this.getAllCards(),
       this.getArchetypesList()
   }
 }
